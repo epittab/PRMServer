@@ -1,8 +1,22 @@
 const express = require('express');
 const app = express();
 
+require('dotenv').config()
+
+PORT = process.env.PORT
+
+
+//Routing
+const engageRoutes = require('./Routes/engageRoutes')
+const userRoutes = require('./Routes/userRoutes')
+const friendsRoutes = require('./Routes/friendsRoutes')
+
+app.use('/api/engage', engageRoutes);
+app.use('/api/user', userRoutes);
+app.use('/api/friends', friendsRoutes);
+
 app.get('/', (req, res) => {
     res.send('hi')
 })
 
-app.listen(4000, ()=>{console.log(`listening on Port 4000`)})
+app.listen(PORT, ()=>{console.log(`listening on Port ${PORT}`)})
