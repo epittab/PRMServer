@@ -50,31 +50,12 @@ class Database {
         }
     }
 
-    async insertNewUser(param){
+    async insertNewFriend(param){
         try{
-            await pool.query(`INSERT INTO ${table} (user_created, user_lastlogin, username, user_password, user_email) values ($1, $2, $3, $4, $5)`, ['2019-10-25', '2019-10-25', param.username, param.password, param.email])
-            return true
-        }
-        catch(error) {
-            console.log(`Could not insert data into Database ${error}`)
-            return false
-        }
-    }
-
-    async insertNewEmp(param){
-        try{
-            await pool.query(`INSERT INTO ${table} (emp_birthdate, emp_hiredate, emp_firstname, emp_lastname, emp_position, emp_cedula) values ($1, $2, $3, $4, $5, $6)`, [param.dob, param.hiredate, param.firstName, param.lastName, param.position, param.cedula])
-            return true
-        }
-        catch(error) {
-            console.log(`Could not insert data into Database ${error}`)
-            return false
-        }
-    }
-
-    async insertNewClient(param){
-        try{
-            await pool.query(`INSERT INTO ${table} (client_firstname, client_lastname, client_dob, client_gender, client_idcard, client_email, client_telephone, client_status, client_confirstname, client_conlastname, client_contelephone, client_conrelation, client_created_date, client_update_date, client_diagnosed) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)`, [param.firstName, param.lastName, param.dob, param.gender, param.cedula, param.status, param.email, param.telephone, param.contactFirstname, param.contactLastname, param.contactTelephone, param.contactRelation, param.createdDate, param.updatedDate, param.isDiagnosed])
+            await pool.query(`INSERT INTO ${table} 
+                ( user_id, first_name, last_name, date_of_birth, friend_type_id, friends_since, friend_street, friend_city, friend_state, friend_country, friend_zip) 
+                values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`, 
+                [ '1', param.first_name, param.last_name, param.dob, param.relation, param.friends_since, '123 main st.', 'winchester', 'va', 'usa', '22602' ])
             return true
         }
         catch(error) {
@@ -91,7 +72,6 @@ class Database {
             console.log(error)
         }
     }
-
 
     async deleteByIdDb(id) {
         try{

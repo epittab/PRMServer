@@ -9,13 +9,20 @@ Router.route('/')
     res.setHeader('Content-Type', 'text/plain'); 
     next(); 
 }) 
-.get((req, res, next) => { 
-    res.end('When a GET request is made to friends, then this '
-            + 'is the response sent to the client!'); 
+.get( async (req, res, next) => { 
+    const results = await DB.readAllRows();
+    res.send(JSON.stringify(results));
 }) 
-.post((req, res, next) => { 
-    console.log(req.body)
-    res.status(201).send(req.body)
+.post( async (req, res, next) => {
+    try {
+        const success = await DB.insertNewFriend(req.body)
+        console.log(req.body)
+        res.status(201).send(req.body)
+    } 
+    catch(error){
+
+    }
+    
 }) 
 .put((req, res, next) => { 
     res.end('When a PUT request is made, then this '
