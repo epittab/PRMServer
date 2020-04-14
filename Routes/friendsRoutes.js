@@ -14,8 +14,8 @@ Router.route('/')
             + 'is the response sent to the client!'); 
 }) 
 .post((req, res, next) => { 
-    res.end('When a POST request is made, then this '
-            + 'is the response sent to the client!'); 
+    console.log(req.body)
+    res.status(201).send(req.body)
 }) 
 .put((req, res, next) => { 
     res.end('When a PUT request is made, then this '
