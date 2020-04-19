@@ -25,10 +25,13 @@ app.use((req, res, next)=>{
 
 //Routing
 const engageRoutes = require('./Routes/engageRoutes')
+const engageTypeRoutes = require('./Routes/engageTypeRoutes')
 const userRoutes = require('./Routes/userRoutes')
 const friendsRoutes = require('./Routes/friendsRoutes')
 
 app.use('/api/engage', engageRoutes);
+app.use('/api/engagetype', engageTypeRoutes);
+
 app.use('/api/user', userRoutes);
 app.use('/api/friends', friendsRoutes);
 

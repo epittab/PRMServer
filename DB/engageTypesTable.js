@@ -28,13 +28,13 @@ class Database {
          }
     }
 
-    async readAllRows(table){
+    async readAllRows(){
         try{
             const results = await pool.query(`select * from ${table}`)
             return results.rows
         }
         catch(error) {
-            console.log(`Could not retreive data from DB ${error}...`)
+            console.log(`Could not retreive data from DB Engage Types ${error}...`)
             return [];
         }
        
